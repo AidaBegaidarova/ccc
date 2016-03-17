@@ -1,8 +1,10 @@
-def wsgi_application (env, start_response):
+def app (env, start_response):
 	status = '200 OK'
 	headers = [
 		('Content-type', 'text/plain')
 	]
-	body env['QUERY_STRING'].split('&'):
+	body = ''
+	for line in env['QUERY_STRING'].split('&'):
+		body = body + line + '\n'
 	start_response(status, headers)
-	return [body]
+	return body
