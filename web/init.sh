@@ -3,6 +3,8 @@ curDir=$(pwd)
 homeEnv='/home/user/StepicWebTech/web'
 testEnv='/home/web'
 
+./createDB.sh
+
 if [ $curDir == $homeEnv ]; then
         echo 'home env'
 
@@ -25,5 +27,6 @@ elif [ $curDir == $testEnv ]; then
 
 else
         echo 'unknown env!'
+	exit
 fi
 
