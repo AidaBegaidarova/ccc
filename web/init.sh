@@ -10,7 +10,8 @@ if [ $curDir == $homeEnv ]; then
 	sudo ln -s /home/user/StepicWebTech/web/etc/nginx.conf  /etc/nginx/sites-enabled/test.conf
 	sudo /etc/init.d/nginx restart
 
-	sudo gunicorn -b 127.0.0.1:8000 hello:app
+	cd ask
+	sudo gunicorn -b 127.0.0.1:8000 ask.wsgi
 elif [ $curDir == $testEnv ]; then
         echo 'test env'
 

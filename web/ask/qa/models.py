@@ -10,7 +10,7 @@ class Question(models.Model):
     text = models.TextField(null=False)                     #полный текст вопроса
     added_at = models.DateTimeField(auto_now_add=True, blank=True)  #дата добавления вопроса
     rating = models.IntegerField(default=0)     #рейтинг вопроса (число)
-    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='question_set')   #автор вопроса
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='question_author_set')   #автор вопроса
     likes = models.ManyToManyField(User, related_name='question_like_set')        #список пользователей, поставивших "лайк"
 
 
