@@ -1,7 +1,7 @@
 #!/bin/bash
 curDir=$(pwd)
 homeEnv='/home/user/StepicWebTech/web'
-testEnv='/home/web'
+testEnv='/home/web/web'
 
 ./createDB.sh
 
