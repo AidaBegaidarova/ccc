@@ -1,9 +1,8 @@
 #!/bin/bash
 curDir=$(pwd)
 homeEnv='/home/user/StepicWebTech/web'
-testEnv='/home/web/web'
+testEnv='/home/box/web'
 
-./createDB.sh
 
 if [ $curDir == $homeEnv ]; then
         echo 'home env'
@@ -15,6 +14,8 @@ if [ $curDir == $homeEnv ]; then
 elif [ $curDir == $testEnv ]; then
         echo 'test env'
 
+	./createDB.sh
+	
 	sudo ln -sf ~/web/etc/nginx.conf /etc/nginx/sites-enabled/test.conf
 	sudo rm -rf /etc/nginx/sites-enabled/default
 	sudo /etc/init.d/nginx restart
