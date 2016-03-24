@@ -13,6 +13,11 @@ class Question(models.Model):
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL, related_name='question_author_set')   #автор вопроса
     likes = models.ManyToManyField(User, related_name='question_like_set')        #список пользователей, поставивших "лайк"
 
+    def __str__(self):
+        return self.title
+
+    def __unicode__(self):
+        return self.__str__()
 
 class Answer(models.Model):
     text = models.TextField(null=False) #текст ответа

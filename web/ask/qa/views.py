@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 
 from django.http import HttpResponse
@@ -22,8 +23,17 @@ def question(request, q_id):
 
 @require_GET
 def index(request, *args, **kwargs):  # TODO
-    resp = 'TODO: show page here'
-    return HttpResponse(resp)
+    questions = Question.objects.all()
+    num = request.GET.get('page', 1)
+    limit = request.GET.get('limit', 2)
+    paginator = Paginator(questions, limit)
+    paginator.baseurl = '/?page='
+    page = paginator.page(num)
+    return render(request, 'qa/page.html',
+        {'posts': page.object_list,
+            'paginator': paginator,
+            'page': page,
+            'question_url': '/question/'})
 
 
 @require_GET
