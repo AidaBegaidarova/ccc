@@ -25,7 +25,7 @@ elif [ $curDir == $testEnv ]; then
 	sudo /etc/init.d/gunicorn restart
 
 	cd ~/web/ask/ask
-	gunicorn -b 127.0.0.1:8080 wsgi
+	gunicorn -b 127.0.0.1:8000 wsgi
 
 else
         echo 'unknown env!'
