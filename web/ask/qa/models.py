@@ -18,4 +18,10 @@ class Answer(models.Model):
     text = models.TextField(null=False) #текст ответа
     added_at = models.DateTimeField(auto_now_add=True, blank=True)#дата добавления ответа
     question = models.ForeignKey(Question, null=True, on_delete=models.SET_NULL)#вопрос, к которому относится ответ
-    author = models.ForeignKey(User, on_delete=models.CASCADE)      #автор ответа
+    author = models.ForeignKey(User, null=True, on_delete=models.CASCADE)      #автор ответа
+
+    def __str__(self):
+        return self.text
+
+    def __unicode__(self):
+        return self.__str__()

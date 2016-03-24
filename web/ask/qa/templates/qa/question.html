@@ -6,7 +6,12 @@
 </head>
 <body>
     <h1>{{ question.title }}</h1>
-
     <p>{{ question.text }}</p>
+    <h2>Answers:</h2>
+    <ul>
+        {% for answer in answers %}
+        <li>{{ answer }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
