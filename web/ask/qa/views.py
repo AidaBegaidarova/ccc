@@ -1,8 +1,9 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
 
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views.decorators.http import require_GET
+from qa.forms import AskForm
 from qa.models import Question
 
 
@@ -33,6 +34,19 @@ def popular(request, *args, **kwargs):
     questions = Question.objects.all()
     questions = questions.order_by('-rating')
     return pagination(request, questions, '/popular/?page=')
+
+
+def ask(request, *args, **kwargs):
+    if request.method == 'POST':
+        form = AskForm(request.POST)
+        if form.is_valid():
+            return HttpResponseRedirect(form.save().get_url())
+    else:
+        form = AskForm()
+    return render(request, 'qa/ask.html',
+                  {
+                      'form': form
+                  })
 
 
 # TODO: move this helper function somewhere
