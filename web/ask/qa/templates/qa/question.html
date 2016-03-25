@@ -14,5 +14,12 @@
         <li>{{ answer }}</li>
         {% endfor %}
     </ul>
+    {{ form.as_p }}
+    <p>Add one:</p>
+    <form>
+        {% csrf_token %}
+        {{ answer.as_p }}
+        <button type="submit" formmethod="post">Answer</button>
+    </form>
 </body>
 </html>

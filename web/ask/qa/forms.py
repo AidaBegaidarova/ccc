@@ -1,5 +1,5 @@
 from django import forms
-from qa.models import Question
+from qa.models import Question, Answer
 
 
 class AskForm(forms.Form):
@@ -10,3 +10,13 @@ class AskForm(forms.Form):
         q = Question(**self.cleaned_data)
         q.save()
         return q
+
+
+class AnswerForm(forms.Form):
+    text = forms.CharField(widget=forms.Textarea)
+    question_id = forms.IntegerField(widget=forms.HiddenInput())
+
+    def save(self):
+        a = Answer(**self.cleaned_data)
+        a.save()
+        return a

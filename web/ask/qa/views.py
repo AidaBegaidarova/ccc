@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404
 
 from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.views.decorators.http import require_GET
-from qa.forms import AskForm
+from qa.forms import AskForm, AnswerForm
 from qa.models import Question
 
 
@@ -14,12 +14,20 @@ def test(request, *args, **kwargs):
     return HttpResponse(resp)
 
 
-@require_GET
 def question(request, q_id):
     q = get_object_or_404(Question, id=q_id)
+    if request.method == 'POST':
+        form = AnswerForm(request.POST)
+        form.question_id = q.id
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(q.get_url())
+    else:
+        form = AnswerForm(initial={'question_id': q.id})
     return render(request, 'qa/question.html',
                   {'question': q,
-                   'answers': q.answer_set.all()})
+                   'answers': q.answer_set.all(),
+                   'answer': form})
 
 
 @require_GET
