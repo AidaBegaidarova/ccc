@@ -18,14 +18,14 @@ def question(request, q_id):
     q = get_object_or_404(Question, id=q_id)
     if request.method == 'POST':
         form = AnswerForm(request.POST)
-        form.question_id = q.id
+        form.question = q.id
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(q.get_url())
     else:
-        form = AnswerForm(initial={'question_id': q.id})
+        form = AnswerForm(initial={'question': q.id})
     return render(request, 'qa/question.html',
-                  {'question': q,
+                  {'question': q.id,
                    'answers': q.answer_set.all(),
                    'answer': form})
 

@@ -14,9 +14,10 @@ class AskForm(forms.Form):
 
 class AnswerForm(forms.Form):
     text = forms.CharField(widget=forms.Textarea)
-    question_id = forms.IntegerField(widget=forms.HiddenInput())
+    question = forms.IntegerField(widget=forms.HiddenInput())
 
     def save(self):
-        a = Answer(**self.cleaned_data)
+        a = Answer(text=self.cleaned_data['text'],
+                   question_id=self.cleaned_data['question'])
         a.save()
         return a
