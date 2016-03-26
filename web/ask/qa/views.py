@@ -25,7 +25,7 @@ def question(request, q_id):
     else:
         form = AnswerForm(initial={'question': q.id})
     return render(request, 'qa/question.html',
-                  {'question': q.id,
+                  {'question': q,
                    'answers': q.answer_set.all(),
                    'answer': form})
 
