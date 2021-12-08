@@ -7,7 +7,7 @@ mysql -u root -e "grant all on askpupkin_db.* to 'user'@'localhost' identified b
 mysql -u user -p -e "SHOW DATABASES;"
 echo "Running Django scripts..."
 echo "Validating models..."
-cd /home/box/web/ask
+cd /home/box/web/web/ask
 ./manage.py validate
 echo "Creating tables..."
 ./manage.py syncdb
