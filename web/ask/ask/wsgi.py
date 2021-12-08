@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/1.6/howto/deployment/wsgi/
 """
 
 import os
-cd /home/box/web/web/ask/
+cd /home/box/web/web/ask
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ask.settings")
 
 from django.core.wsgi import get_wsgi_application
